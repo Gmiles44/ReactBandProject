@@ -1,0 +1,53 @@
+.song {
+  background-color: lightsalmon;
+  border: 2px solid salmon;
+}
+
+#setlist {
+  border: 2px solid orange;
+  display: flex;
+  float: right;
+  flex-direction: column;
+  width: 48%;
+}
+
+.dragging {
+  opacity: 1;
+}
+
+.repertoire {
+  display: flex;
+  float: left;
+  flex-direction: column;
+  border: 2px solid black;
+  width: 48%;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
