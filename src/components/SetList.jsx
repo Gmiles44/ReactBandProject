@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import Song from "./Song";
 import songs from "../assets/songs";
+import {fractionToMinSec} from "../assets/functions";
 
 function SetList(props) {
     const [setlist, setSetlist] = useState([])
+    
+    //Define drag events, prevent def. for enter/over and define the drop behavior
     function dragEnter(event) {
         event.preventDefault();
         
@@ -13,35 +16,29 @@ function SetList(props) {
         
     }
     function onDrop(event) {
-        //Retrieve index/key/id from dragged object and save it in 'data'
-        const data = event.dataTransfer.getData("text/plain")
-        const newSong = songs[data];
-        setSetlist(prevSetlist => {
-            return [...prevSetlist, newSong]
-        });
-        console.log(setlist);
+        const id = event.dataTransfer.getData("text/plain")
+        const newSong = songs.find(song => song.id === parseInt(id));
+        // TEST IF SONG IS IN THE ARRAY ALREADY, BUT IF WE REMOVE IT FROM REPERTOIRE IT'S NOT EVEN NECESSARY
+        // if (setlist.includes(newSong)) {
+        //     console.log("duplicate");
+        // }
+        props.onAdd(newSong, id);
+        console.log(newSong);
         event.preventDefault();
     }
     return (
         <div id="setlist" onDragEnter={dragEnter} onDragOver={dragOver} onDrop={onDrop}>
-            {setlist.map((song, index) => {
-                function pad(num, size) {
-                    num = num.toString();
-                    while (num.length < size) num = "0" + num;
-                    return num;
-                }
-                const msLength = song.length * 60000
-                const mins = parseInt(song.length)
-                const rawSecs = Math.round((msLength - (mins * 60000)) / 1000)
-                const secs = pad(rawSecs, 2);
+            {props.list.map(song => {
+
+                const songLength = fractionToMinSec(song.length)
 
                 return (
                     <Song 
-                    key={index}
-                    id={index}
+                    key={song.id}
+                    id={song.id}
                     title={song.title}
                     artist={song.artist}
-                    duration={mins+":"+secs}
+                    duration={songLength}
                     />
                 )
             })}
