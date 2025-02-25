@@ -17,27 +17,41 @@ function SetList(props) {
     }
 
     function onDrop(event) {
-        console.log(event.target);
         const id = event.dataTransfer.getData("text/plain")
         const newSong = songs.find(song => song.id === parseInt(id));
-        // TEST IF SONG IS IN THE ARRAY ALREADY, BUT IF WE REMOVE IT FROM REPERTOIRE IT'S NOT EVEN NECESSARY
+        if (event.target.id === 'spacer') {
+            if (props.list.includes(newSong)) {
+                console.log(event.target.attributes.value.value);
+                props.changeOrder(newSong, event.target.attributes.value.value)
+            } else {
+                console.log('spacer id = ' + event.target.attributes.value.value)
+                props.specificAdd(newSong, event.target.attributes.value.value);
+            }
+            return;
+        }
         if (props.list.includes(newSong)) {
-            console.log("duplicate");
+            console.log('duplicate');
             return;
         }
         props.onAdd(newSong, id);
         event.preventDefault();
     }
+    
+        function spacerDrop(event) {
+            const id = event.dataTransfer.getData("text/plain")
+            const newSong = songs.find(song => song.id === parseInt(id));
+            if (props.list.includes(newSong)) {
+                console.log('spacer id = ' + event.target.id);
+                props.changeOrder(newSong, event.target.id)
+            } else {
+                props.specificAdd(newSong, event.target.id);
+            }
+        }
 
     function handleDrag(event) {
         event.target.classList.add("dragging")
         event.dataTransfer.effectAllowed="move";
-        // console.log(`dragstart: effectAllowed = ${event.dataTransfer.effectAllowed}`);
         event.dataTransfer.setData("text/plain", event.target.id);
-    }
-
-    function changeOrder(event) {
-        console.log(event.target.id)
     }
 
     return (
@@ -48,7 +62,7 @@ function SetList(props) {
 
                 return (
                     <div>
-                    <div class="spacer" id={index} onDragEnter={dragEnter} onDragOver={dragOver} onDrop={changeOrder}></div>
+                    <div className="spacer" id='spacer' value={index} onDragEnter={dragEnter} onDragOver={dragOver}></div>
                     <Song 
                     key={song.id}
                     id={song.id}
@@ -57,7 +71,7 @@ function SetList(props) {
                     duration={songLength}
                     handleDrag={handleDrag}
                     />
-                    <div class="spacer" id={index + 1} onDragEnter={dragEnter} onDragOver={dragOver} onDrop={changeOrder}></div>
+                    <div className="spacer" id='spacer' value={index + 1} onDragEnter={dragEnter} onDragOver={dragOver}></div>
                     </div>
                 )
             })}
