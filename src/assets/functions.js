@@ -11,4 +11,5 @@ function fractionToMinSec(timeInFraction) {
     const secs = pad(rawSecs, 2);
     return (mins + ":" + secs)
 }
+
 export {fractionToMinSec};

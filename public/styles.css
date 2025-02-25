@@ -3,6 +3,11 @@
   border: 2px solid salmon;
 }
 
+.spacer {
+  height: 10px;
+  cursor: row-resize;
+}
+
 #setlist {
   border: 2px solid orange;
   display: flex;
@@ -13,6 +18,7 @@
 
 .dragging {
   opacity: 1;
+  cursor: grabbing;
 }
 
 footer {

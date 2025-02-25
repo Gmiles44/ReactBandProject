@@ -7,6 +7,8 @@ import Footer from "./Footer";
 
 function App() {
 
+  //Initialize the states for both the repertoire and the setlist.
+  //Setlist begins as a blank array and repertoire contains all known songs
   const [repertoire, setRepertoire] = useState(songs);
   const [setlist, setSetlist] = useState([])
 
@@ -17,10 +19,17 @@ function App() {
     setRepertoire(repertoire.filter(song => song.id !== parseInt(songId)));
   }
   
+  function removeSong(newSong, songId) {
+    setRepertoire(prevRepertoire => {
+      return [...prevRepertoire, newSong]
+    });
+    setSetlist(setlist.filter(song => song.id !== parseInt(songId)));
+  }
+
   return (
     <div>
       <Header />
-      <Repertoire repertoire={repertoire}/>
+      <Repertoire removeSong={removeSong} repertoire={repertoire}/>
       <SetList onAdd={addSong} list={setlist}/>
       <Footer />
     </div>
