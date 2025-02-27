@@ -1,19 +1,59 @@
 .song {
-  background-color: lightsalmon;
+  background-color: #872341;
   border: 2px solid salmon;
+  color: #F05941;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px black;
+}
+
+.heading {
+  background-color: #872341;
+  border: 2px solid salmon;
+  color: #F05941;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px black;
+}
+
+p {
+  margin: 2px;
+}
+
+h2 {
+  margin: 2px;
+}
+
+body {
+  background-color: #22092C;
+  color: #F05941;
 }
 
 .spacer {
   height: 10px;
-  cursor: row-resize;
+}
+
+.repertoire {
+  display: flex;
+  float: left;
+  flex-direction: column;
+  border: 2px solid salmon;
+  width: 42%;
+  border-radius: 20px;
+  background-color: #BE3144;
+  padding: 10px;
+  box-shadow: 3px 3px 3px black;
 }
 
 #setlist {
-  border: 2px solid orange;
+  border: 2px solid salmon;
   display: flex;
   float: right;
   flex-direction: column;
-  width: 48%;
+  width: 42%;
+  background-color: #BE3144;
+  border-radius: 20px;
+  flex-basis: 20px;
+  padding: 10px;
+  box-shadow: 3px 3px 3px black;
 }
 
 .dragging {
@@ -28,39 +68,10 @@ footer {
   border: 1px solid black;
 }
 
-.repertoire {
-  display: flex;
-  float: left;
-  flex-direction: column;
-  border: 2px solid black;
-  width: 48%;
-}
-
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }

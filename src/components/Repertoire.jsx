@@ -44,12 +44,15 @@ function Repertoire(props) {
     }
 
     return (
-        <div className="repertoire" onDrop={onDrop} onDragOver={dragOver} onDragEnter={dragEnter} onMouseOver={handleHover} onMouseDown={handleGrab}>
+        <div id="repertoire" className="repertoire" onDrop={onDrop} onDragOver={dragOver} onDragEnter={dragEnter} onMouseOver={handleHover} onMouseDown={handleGrab}>
+            <h2 className="heading">Our Repertoire</h2>
+            <div className="spacer" id='spacer'></div>
             {props.repertoire.map((song, index) => {
 
                 const songLength = fractionToMinSec(song.length)
 
                 return (
+                    <div>
                     <Song 
                     key={song.id}
                     id={song.id}
@@ -58,6 +61,8 @@ function Repertoire(props) {
                     duration={songLength}
                     handleDrag={handleDrag}
                     />
+                    <div className="spacer" id='spacer'></div>
+                    </div>
                 )
             })}
         </div>

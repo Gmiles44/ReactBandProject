@@ -31,11 +31,18 @@ function App() {
 
   function changeOrder(newSong, index) {
     console.log('change order');
+    const songIndex = setlist.findIndex(song => song.id === parseInt(newSong.id));
+    console.log(songIndex);
+    console.log(parseInt(index));
     setSetlist(prevSetlist => {
       return setlist.filter(song => song.id !== parseInt(newSong.id));
     });
     setSetlist(prevSetlist => {
-      return prevSetlist.toSpliced(index, 0, newSong);
+      if (songIndex >= parseInt(index)) {
+        return prevSetlist.toSpliced(index, 0, newSong);
+      } else {
+        return prevSetlist.toSpliced(index - 1, 0, newSong);
+      }
     });
   }
 

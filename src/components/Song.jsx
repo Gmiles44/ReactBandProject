@@ -4,7 +4,7 @@ function Song(props) {
 
     return (
         <div className="song" draggable="true" id={props.id} onDragStart={props.handleDrag}>
-            <h2>{props.title}</h2>
+            <h2>{props.index}{props.title}</h2>
             <p>Artist: {props.artist}</p>    
             <p>Length: {props.duration}</p>
         </div>

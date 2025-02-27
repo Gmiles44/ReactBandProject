@@ -7,6 +7,7 @@ function SetList(props) {
     
     //Define drag events, prevent def. for enter/over and define the drop behavior
     function dragEnter(event) {
+        console.log(event.target.nodeName)
         event.preventDefault();
         
     }
@@ -19,6 +20,7 @@ function SetList(props) {
     function onDrop(event) {
         const id = event.dataTransfer.getData("text/plain")
         const newSong = songs.find(song => song.id === parseInt(id));
+
         if (event.target.id === 'spacer') {
             if (props.list.includes(newSong)) {
                 console.log(event.target.attributes.value.value);
@@ -56,6 +58,8 @@ function SetList(props) {
 
     return (
         <div id="setlist" onDragEnter={dragEnter} onDragOver={dragOver} onDrop={onDrop}>
+            <h2 className="heading">Your Setlist</h2>
+            <div className="spacer" id='spacer'></div>
             {props.list.map((song, index) => {
 
                 const songLength = fractionToMinSec(song.length)
@@ -66,6 +70,7 @@ function SetList(props) {
                     <Song 
                     key={song.id}
                     id={song.id}
+                    index={(index + 1) + ". "}
                     title={song.title}
                     artist={song.artist}
                     duration={songLength}
