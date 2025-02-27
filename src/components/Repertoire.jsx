@@ -14,12 +14,10 @@ function Repertoire(props) {
     }
 
     function onDrop(event) {
-        console.log('on drop');
         const id = event.dataTransfer.getData("text/plain")
         const newSong = songs.find(song => song.id === parseInt(id));
         // TEST IF SONG IS IN THE ARRAY ALREADY, BUT IF WE REMOVE IT FROM REPERTOIRE IT'S NOT EVEN NECESSARY
         if (props.repertoire.includes(newSong)) {
-            console.log("duplicate");
             return;
         }
         props.removeSong(newSong, id);

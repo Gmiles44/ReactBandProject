@@ -12,15 +12,12 @@ function fractionToMinSec(timeInFraction) {
     return (mins + ":" + secs)
 }
 
-function array_move(arr, old_index, new_index) {
-    if (new_index >= arr.length) {
-        var k = new_index - arr.length + 1;
-        while (k--) {
-            arr.push(undefined);
-        }
-    }
-    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-    return arr; // for testing
-};
+function animationTest() {
+    const element = document.getElementById("repertoire");
+    element.style.transform = "scale(1.5)"; /* Increase size by 50% */
+    setTimeout(() => {
+      element.style.transform = "scale(1)"; /* Return to original size after 1s */
+    }, 1000);
+  }
 
-export {fractionToMinSec, array_move};
+export {fractionToMinSec, animationTest};

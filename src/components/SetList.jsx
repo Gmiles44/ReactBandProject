@@ -7,9 +7,7 @@ function SetList(props) {
     
     //Define drag events, prevent def. for enter/over and define the drop behavior
     function dragEnter(event) {
-        console.log(event.target.nodeName)
         event.preventDefault();
-        
     }
 
     function dragOver(event) {
@@ -23,16 +21,13 @@ function SetList(props) {
 
         if (event.target.id === 'spacer') {
             if (props.list.includes(newSong)) {
-                console.log(event.target.attributes.value.value);
                 props.changeOrder(newSong, event.target.attributes.value.value)
             } else {
-                console.log('spacer id = ' + event.target.attributes.value.value)
                 props.specificAdd(newSong, event.target.attributes.value.value);
             }
             return;
         }
         if (props.list.includes(newSong)) {
-            console.log('duplicate');
             return;
         }
         props.onAdd(newSong, id);
@@ -43,7 +38,6 @@ function SetList(props) {
             const id = event.dataTransfer.getData("text/plain")
             const newSong = songs.find(song => song.id === parseInt(id));
             if (props.list.includes(newSong)) {
-                console.log('spacer id = ' + event.target.id);
                 props.changeOrder(newSong, event.target.id)
             } else {
                 props.specificAdd(newSong, event.target.id);
@@ -80,6 +74,7 @@ function SetList(props) {
                     </div>
                 )
             })}
+            <h2 className="heading">Set list length:</h2>
         </div>
     )
 }

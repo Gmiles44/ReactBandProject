@@ -4,7 +4,7 @@ import Repertoire from "./Repertoire";
 import SetList from "./SetList";
 import Header from "./Header";
 import Footer from "./Footer";
-import {array_move} from "../assets/functions";
+import {animationTest} from '../assets/functions';
 
 function App() {
 
@@ -14,7 +14,10 @@ function App() {
   const [setlist, setSetlist] = useState([])
 
   function addSong(newSong, songId) {
-    console.log('add song');
+    if (!newSong || !songId) {
+      alert('Be sure to drag a single song at a time!');
+      return;
+    }
     setSetlist(prevSetlist => {
       return [...prevSetlist, newSong]
     });
@@ -22,7 +25,10 @@ function App() {
   }
   
   function removeSong(newSong, songId) {
-    console.log('remove song');
+    if (!newSong || !songId) {
+      alert('Be sure to drag a single song at a time!');
+      return;
+    }
     setRepertoire(prevRepertoire => {
       return [...prevRepertoire, newSong]
     });
@@ -30,10 +36,7 @@ function App() {
   }
 
   function changeOrder(newSong, index) {
-    console.log('change order');
     const songIndex = setlist.findIndex(song => song.id === parseInt(newSong.id));
-    console.log(songIndex);
-    console.log(parseInt(index));
     setSetlist(prevSetlist => {
       return setlist.filter(song => song.id !== parseInt(newSong.id));
     });
@@ -47,10 +50,7 @@ function App() {
   }
 
   function specificAdd(newSong, index) {
-    console.log('specific add');
-    console.log(newSong, index);
     setSetlist(prevSetlist => {
-      console.log(prevSetlist);
       return prevSetlist.toSpliced(index, 0, newSong);
     });
     setRepertoire(repertoire.filter(song => song.id !== parseInt(newSong.id)));
