@@ -26,25 +26,25 @@ function Repertoire(props) {
 
     function dragEnter(event) {
         event.preventDefault();
-        
     }
 
     function dragOver(event) {
         event.preventDefault();
-        
     }
 
     function handleHover(event) {
-        event.target.style.cursor = "grab";
     }
+
     function handleGrab(event) {
-        event.target.style.cursor = "grabbing";
+        console.log("handleGrab");
+        console.log(event.target.id);
+        event.target.classList.add('dragging');
     }
 
     return (
-        <div id="repertoire" className="repertoire" onDrop={onDrop} onDragOver={dragOver} onDragEnter={dragEnter} onMouseOver={handleHover} onMouseDown={handleGrab}>
+        <div id="repertoire" className="repertoire" onDrop={onDrop} onDragOver={dragOver} onDragEnter={dragEnter} onMouseOver={handleHover}>
             <h2 className="heading">Our Repertoire</h2>
-            <div className="spacer" id='spacer'></div>
+            <div className="spacer" id="spacer"></div>
             {props.repertoire.map((song, index) => {
 
                 const songLength = fractionToMinSec(song.length)
@@ -58,6 +58,7 @@ function Repertoire(props) {
                     artist={song.artist}
                     duration={songLength}
                     handleDrag={handleDrag}
+                    onMouseDown={handleGrab}
                     />
                     <div className="spacer" id='spacer'></div>
                     </div>

@@ -73,7 +73,7 @@ const songs = [
     },
     {
         id: 13,
-        title: "Dragon Atttack",
+        title: "Dragon Attack",
         artist: "Queen",
         length: 4.3
     },

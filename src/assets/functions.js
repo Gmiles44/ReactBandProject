@@ -12,12 +12,9 @@ function fractionToMinSec(timeInFraction) {
     return (mins + ":" + secs)
 }
 
-function animationTest() {
-    const element = document.getElementById("repertoire");
-    element.style.transform = "scale(1.5)"; /* Increase size by 50% */
-    setTimeout(() => {
-      element.style.transform = "scale(1)"; /* Return to original size after 1s */
-    }, 1000);
-  }
+function animationTest(id) {
+  const element = document.getElementById(id);
+  element.classList.add("appear");
+}
 
 export {fractionToMinSec, animationTest};
